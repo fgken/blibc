@@ -1,3 +1,5 @@
+#include "debug/debug.h"
+
 #include <stdio.h>
 
 FILE *const stdin;
