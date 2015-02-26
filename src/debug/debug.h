@@ -2,7 +2,7 @@
 #include "syscall_number.h"
 #include "syscall.h"
 
-void printd(char *buf)
+void printd(const char *buf)
 {
 	long len = 0;
 	

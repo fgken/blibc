@@ -7,8 +7,36 @@ FILE *const stdout;
 FILE *const stderr;
 
 size_t fread(void *a, size_t b, size_t c, FILE *d){printd("9Debug Print!!!\n");}
-size_t fwrite(const void *a, size_t b, size_t c, FILE * d){printd("10Debug Print!!!\n");}
-int putc(int a, FILE *b){printd("11Debug Print!!!\n");}
+size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE * stream)
+{
+	printd("fwrite\n");
+	printd("Debug: FIXME fwrite !!!!\n");
+
+	if (stream == stdout) {
+		printd(ptr);
+	}
+	else if (stream == stdin) {
+		printd("Debug: FIXME Not Implemented!!! in fwrite\n");
+	}
+	else {
+		printd("Debug: FIXME Not Implemented!!! in fwrite\n");
+	}
+
+	return size;
+}
+
+int putc(int c, FILE *stream)
+{
+	char str[2];
+	printd("putc\n");
+	printd("Debug: FIXME putc !!!!\n");
+
+
+	str[0] = (char)c;
+	str[1] = 0x00;
+	printd(str);
+}
+
 int printf(const char *a, ...){printd("12Debug Print!!!\n");}
 int fprintf(FILE *a, const char *b, ...){printd("13Debug Print!!!\n");}
 int snprintf(char *a, size_t b, const char *c, ...){printd("14Debug Print!!!\n");}
@@ -91,6 +119,8 @@ void *realloc (void *ptr, size_t size)
 
 	pos += size;
 
+	if(pos > sizeof(memory)) printd("Debug: Stack over flow!!!\n");
+
 	return ret;
 }
 
@@ -108,7 +138,14 @@ _Noreturn void abort (void){while(1);}
 #include <ctype.h>
 int   tolower(int a){printd("69Debug Print!!!\n");}
 int   toupper(int a){printd("70Debug Print!!!\n");}
-int   isalnum(int a){printd("71Debug Print!!!\n");}
+int   isalnum(int c)
+{
+	printd("isalnum\n");
+	return ( ('0' <= c && c <= '9')
+			|| ('a' <= c && c <= 'z')
+			|| ('A' <= c && c <= 'Z') );
+}
+
 int   isxdigit(int a){printd("72Debug Print!!!\n");}
 
 
